@@ -33,30 +33,49 @@ int main() {
                                "Fallout Shelter is on your Tesla. Tap the Entertainment button."};
 
     bool play = true;
+
     while(play) {
-        int kOrE = rand() % 2 + 1;
+
+        int kOrE = (rand() % 2 )+ 1;
         int tweet = rand() % 10;
+
         if (kOrE == 1) {
-            std::cout << kTweets[tweet] << std::endl;
-        } else std::cout << eTweets[tweet] << std::endl;
-        std::cout << "\nWho do you think tweeted this?\nType 1 for Kanyewest and 2 for Elon Musk!" << std::endl;
+            std::cout << "\n"+kTweets[tweet] << std::endl;
+        } else std::cout <<"\n"+eTweets[tweet] << std::endl;
+
+        std::cout << "\nWho do you think tweeted this?\nType '1' for Kanyewest and '2' for Elon Musk!" << std::endl;
 
         int guess;
         std::cin >> guess;
 
         if (guess == kOrE) {
             correct++;
-            std::cout << "That right!"<<std::endl;
-        } else std::cout<<"Nope, that's not it!"<<std::endl;
-        std::cout<<"Want to play again?\nType Y for yes and N for no" << std::endl;
+            std::cout << "\nThat right!"<<std::endl;
+        } else std::cout<<"\nNope, that's not it!"<<std::endl;
+
+        std::cout<<"Want to play again?\nType 'Y' for yes and 'N' for no" << std::endl;
+
         char again;
         std::cin >> again;
-        if(again=='n'||again=='N'){
-            play = false;
-        } else play = true;
+
+        bool check = true;
+        while (check) {
+            if (again == 'n' || again == 'N') {
+                play = false;
+                check = false;
+            } else if (again == 'Y' || again == 'y') {
+                play = true;
+                check = false;
+            } else {
+                std::cout << "\nPlease type either 'Y' or 'N'" << std::endl;
+                std::cin >> again;
+                check = true;
+            }
+        }
         total++;
     }
-    std::cout<<"Thanks for playing!"<<std::endl;
+
+    std::cout<<"\nThanks for playing!"<<std::endl;
     std::cout<<"Total times played: ";
     std::cout<<total<<std::endl;
     std::cout<<"Total correct guesses: ";
